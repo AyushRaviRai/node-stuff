@@ -1,4 +1,4 @@
-console.log("Starting Our App Suckers get ready ");
+console.log("Starting Our App Suckers get ready hahaha");
 
 // requiring file system module
 const fs = require('fs');
