@@ -9,12 +9,18 @@ const notes = require('./notes.js');
 // lodash module
 const _ = require('lodash');
 
+debugger;
+
 // yargs
 const yargs = require('yargs');
+
+debugger;
 
 const argv = yargs.argv
 
 var action = argv.action;
+
+debugger;
 
 if (action === 'add') {
 	notes.addNote(argv.title, argv.body);
