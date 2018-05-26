@@ -16,11 +16,16 @@ const yargs = require('yargs');
 
 debugger;
 
-const argv = yargs.argv
+const argv = yargs
+	.command('add', 'Add a New Note', {
+
+	})
+	.help()
+	.argv
 
 var action = argv.action;
 
-debugger;
+debugger; 
 
 if (action === 'add') {
 	notes.addNote(argv.title, argv.body);

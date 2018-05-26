@@ -1,7 +1,40 @@
 console.log(" == Starting notes.js ==");
 
+
+var fs = require('fs');
+const notesFile = './notes.json';
+
+var getNotes = () => {
+    try {
+        rawNotes = fs.readFileSync(notesFile);
+        notes = JSON.parse(rawNotes);
+        return notes
+    } catch(err) {
+        console.log(err);
+        return [];
+    }
+};
+
+var saveNote = (notes) => {
+    try {
+        fs.writeFileSync(notesFile, notes);
+    } catch (err) {
+        console.log(err.error)
+    }
+};
+
 // Add Note 
 var addNote = (title, body) => {
+    notes = [];
+    newNote = {
+        title : title,
+        body : body
+    };
+    notes = getNotes();
+    notes.push(newNote);
+    stringNote = JSON.stringify(notes);
+    saveNote(stringNote);
+
     console.log("Add Note Method : ", title, body);
 };
 
@@ -12,6 +45,12 @@ var getAll = () => {
 
 // Note ko padh rahe hain 
 var readNote = (title) => {
+    notes = getNotes();
+    if (notes) {
+        for (x in notes) {
+            console.log(notes[x].title);
+        }
+    }
     console.log("Reading Note with title :", title);
 };
 
