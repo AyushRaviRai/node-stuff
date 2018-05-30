@@ -19,7 +19,7 @@ geocode
 	.then((result) => {
 		console.log(result.address)
 		return weather.getWeather(result.lattitude, result.longitude)
-	})
+	})  
 	.then((result) => {
 		console.log(result)	
 	})
