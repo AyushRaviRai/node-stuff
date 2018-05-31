@@ -9,11 +9,40 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set("view engine", "hbs");
 app.use(express.static(__dirname + '/public'));
 
+// Current year helper
+hbs.registerHelper('getCurrentYear', () => {
+	return new Date().getFullYear()
+});
+
+// bada karne waala helper
+hbs.registerHelper('iskoBadaKar', (text) => {
+	if (text) {
+		return text.toUpperCase()
+	}
+	return ''
+});
+
+// using middle wares
+app.use((request, response, next) => {
+	var currentTime = new Date().toString()
+	console.log(`${currentTime}: ${request.method} => ${request.url}`)
+	next();
+});
+
+// maintanence middle ware
+app.use((request, response, next) => {
+	response.render('maintanence.hbs')
+});
+
 app.get('/', (request, response) => {
 	response.render("home.hbs", {
 		shit_type : "Maha",
 		current_year : new Date().getFullYear(),
-		page_title : "Home Page Suckers"
+		page_title : "Home Page Suckers",
+		data : {
+			andar : "hahahah",
+			nacho : "again"
+		}
 	});
 });
 

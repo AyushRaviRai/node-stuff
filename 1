@@ -1,0 +1,520 @@
+#!/usr/bin/env expect -f
+
+set user [lindex $argv 0]
+set debugPass "lu0KPE\[q93"
+set ddebugPass "eG_oF;!LiH"
+
+set qa1Pass "Shopclues@321"
+set fqa1Pass "Shopclues@321"
+
+set orderMaster "osdb4"
+set orderSlave "osdb1"
+
+set catalogMaster "cmdb1"
+set catalogSlave "csdb2"
+
+set fulfillmentMaster "ffmdb1"
+set ffSlave "ffmdb1"
+
+set bmaster "bmdb2"
+
+set ajayJmpPass "fatak@se"
+set aqa11PassAnoop "!gh\$bn6@12Lk1990"
+
+set tarunQaUser "tarun"
+set tarunQaPass "Shopclues@321"
+
+set munishQaUser "mkumar"
+set munishQaPass "munish@234!"
+set munishFqaPass "munish@234!"
+ 
+set zeeshanQaUser "zeeshan"
+set zeeshanQaPass "zeeshank@123"
+set zeeshanFqaPass "zeeshank@123"
+
+set nehaSandboxPassword "neha@123"
+
+set localDbPass "CluesDev"
+
+set sainiJP2Pass "!yuma89"
+set sainiSmokePass "redhat!"
+
+if {$user == "fqa4"} {
+	spawn ssh "dinesh@180.179.179.16"
+	expect "*assword*"
+	send "mon25@jul\r"
+	expect "*dinesh*"
+	send "ssh $user\r"
+	expect "*assword*"
+	send "21thu@2016\r"
+	expect "fqa4"
+	send "cd /home/shopclue/\r"
+	interact
+
+} elseif {$user == "fqa8"} {
+    spawn ssh "$zeeshanQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$zeeshanQaPass\r"
+    expect "*$zeeshanQaUser*"
+    send "ssh $user\r"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "fqa1"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh $user\r"
+    expect "*assword*"
+    send "$munishFqaPass\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "fqa11"} {
+    spawn ssh "anoop@180.179.179.16"
+    expect "*assword*"
+    send "$aqa11PassAnoop\r"
+    expect "*anoop*"
+    send "ssh $user\r"
+    expect "*assword*" 
+    send "$aqa11PassAnoop\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact 
+
+} elseif {$user == "fqa7"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh $user\r"
+    expect "*assword*"
+    send "$munishFqaPass\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "fqa3"} {
+    spawn ssh "ashwani@180.179.179.16"
+    expect "*assword*"
+    send "ashwani\r"
+    expect "*ashwani*"
+    send "ssh $user\r"
+    expect "*assword*"
+    send "ashwani\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "debug1"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@$user\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*$user*"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "u-smoke1"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "tarun@123@123\r"
+    expect "*tarun*"
+    send "ssh soa@$user\r"
+    expect "*assword*"
+    send "Handy@@@op098\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "univers"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "fqa1Pass\r"
+    expect "*tarun*"
+    send "ssh soa@$user\r"
+    expect "*assword*"
+    send "Raj@lPop(067%%\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "debug2"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ayush@$user\r"
+    expect "*assword*"
+    send "ayush\r"
+    expect "*bash*"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "omaster"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $orderMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+
+} elseif {$user == "cmaster"} {
+	spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $catalogMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+} elseif {$user == "mmaster"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "debug1"
+    send "cd /home/shopclue/\r"
+    send "mysql -h misc-bs4 -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+
+} elseif {$user == "amazon"} {
+    spawn ssh "ubuntu@52.203.49.74"
+    expect "*assword*"
+    send "Ayush29874\r"
+    expect "*ubuntu*"
+    send "cd /var/www/html\r"
+    interact
+
+} elseif {$user == "p2"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh fqa1\r"
+    expect "*assword*"
+    send "$munishFqaPass\r"
+    expect "fqa1"
+    send "cd /home/shopclue/\r"
+    send "mysql -h qadbp2 -u misc_user -A -p\r"
+    expect "*assword*"
+    send "M!sc@us3r\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+} elseif {$user == "p1"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh fqa1\r"
+    expect "*assword*"
+    send "$munishFqaPass\r"
+    expect "fqa1"
+    send "cd /home/shopclue/\r"
+    send "mysql -h qadbp1 -u misc_user -A -p\r"
+    expect "*assword*"
+    send "M!sc@us3r\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+} elseif {$user == "sandbox1"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh nangra@$user\r"
+    expect "*Are you sure you want to continue*"
+    send "yes\r"
+    expect "*assword*"
+    send "$nehaSandboxPassword\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "ddebug1"} {
+	
+ spawn ssh "mkumar@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*mkumar*"
+    send "ssh ajay@$user\r"
+    expect "*assword*"
+    send "$ddebugPass\r"
+    expect "*ajay*"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "dfqa1"} {
+    spawn ssh "$munishQaUser@180.179.179.16"
+    expect "*assword*"
+    send "$munishQaPass\r"
+    expect "*$munishQaUser*"
+    send "ssh $user\r"
+    expect "*assword*"
+    send "$munishFqaPass\r"
+    expect "$user"
+    send "cd /home/shopclue/\r"
+    interact
+
+} elseif {$user == "localdb"} {
+   mysql -h 192.168.20.171 -u dev -A -p
+
+} elseif {$user == "ffmaster"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $fulfillmentMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "oslave"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $orderSlave -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "cslave"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $catalogSlave -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "ffslave"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $ffSlave -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "bmaster"} {
+    spawn ssh "tarun@180.179.179.16"
+    expect "*assword*"
+    send "$qa1Pass\r"
+    expect "*tarun*"
+    send "ssh ajay@debug1\r"
+    expect "*assword*"
+    send "$debugPass\r"
+    expect "*debug1*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $bmaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+}  elseif {$user == "omasternew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $orderMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+
+
+} elseif {$user == "oslavenew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $orderSlave -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "cmasternew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $catalogMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "cslavenew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $catalogSlave -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "ffmasternew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $fulfillmentMaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "bmasternew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h $bmaster -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "mmasternew"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+    send "cd /home/shopclue/\r"
+    send "mysql -h misc-bs4 -u appsuser -A -p\r"
+    expect "*assword*"
+    send "sApp@Yamino5$\r"
+    expect "*mysql*"
+    send "use shopclue_cart -A\r"
+    interact
+} elseif {$user == "smoke1"} {
+    spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.201\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+	send "su - shopclue\r"
+    send "cd /home/shopclue/\r"
+    interact
+} elseif {$user == "smoke2"} {
+	spawn ssh "asaini@180.179.168.175"
+    expect "*assword*"
+    send "$sainiJP2Pass\r"
+    expect "*JP2*"
+    send "ssh root@192.168.101.202\r"
+    expect "*assword*"
+    send "$sainiSmokePass\r"
+    expect "*root*"
+	send "su - shopclue\r"
+    send "cd /home/shopclue\r"
+	interact
+}
+
+
+
+
+
+
